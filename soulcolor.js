@@ -47,3 +47,21 @@ document.addEventListener('DOMContentLoaded', () => {
     generateSoulColor(); // ソウルカラーを生成
   });
 });
+
+// 新しいボタン機能を実装する
+function showMessage() {
+  const messageContainer = document.getElementById('messageContainer');
+  messageContainer.textContent = 'ボタンが押されました'; // メッセージを表示
+}
+
+// DOMが読み込まれたらイベントリスナーを設定
+document.addEventListener('DOMContentLoaded', () => {
+  // 既存のフォームイベント
+  document.getElementById('soulColorForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    generateSoulColor();
+  });
+
+  // 新しいボタンのイベントリスナーを追加
+  document.getElementById('messageButton').addEventListener('click', showMessage);
+});
