@@ -1,5 +1,17 @@
 // カラーリスト
-const colors = ["赤", "青", "緑", "黄", "紫", "オレンジ", "ピンク", "黒", "白", "灰色"];
+const colors = ["red", "blue", "green", "yellow", "purple", "orange", "pink", "black", "white", "gray"];
+const colorNames = {
+  "red": "赤",
+  "blue": "青",
+  "green": "緑",
+  "yellow": "黄",
+  "purple": "紫",
+  "orange": "オレンジ",
+  "pink": "ピンク",
+  "black": "黒",
+  "white": "白",
+  "gray": "灰色"
+};
 
 function generateSoulColor() {
   const birthday = document.getElementById('birthday').value;
@@ -9,19 +21,19 @@ function generateSoulColor() {
   const seed = dateParts.reduce((acc, part) => acc + parseInt(part), 0);
   
   // シード値を基に色を選択
-  const selectedColors = [];
+  const selectedColorKeys = [];
   for (let i = 0; i < 5; i++) {
-    selectedColors.push(colors[(seed + i) % colors.length]);
+    selectedColorKeys.push(colors[(seed + i) % colors.length]);
   }
   
   // 結果を表示
   const resultsContainer = document.getElementById('results');
   resultsContainer.innerHTML = ''; // 既存の結果をクリア
-  selectedColors.forEach((color) => {
+  selectedColorKeys.forEach((colorKey) => {
     const colorDiv = document.createElement('div');
-    colorDiv.textContent = color;
-    colorDiv.style.backgroundColor = color;
-    colorDiv.style.color = 'white';
+    colorDiv.textContent = colorNames[colorKey]; // 色の名前をテキストとして設定
+    colorDiv.style.backgroundColor = colorKey; // 背景色としてカラーコードを使用
+    colorDiv.style.color = colorKey === 'white' || colorKey === 'yellow' ? 'black' : 'white'; // 読みやすいように文字色を調整
     colorDiv.style.margin = '5px';
     colorDiv.style.padding = '5px';
     resultsContainer.appendChild(colorDiv);
